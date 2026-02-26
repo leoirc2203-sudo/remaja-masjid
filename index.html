@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Remaja masjid</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  
+</head>
+<body>
+  
+</body>
+</html>
+<style>
+
+html {
+    scroll-behavior: smooth; /* KUNCI: Biar pas diklik, dia geser pelan-pelan ke bawah */
+}
+
+
+.pengurus-box {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between; /* Nama di kiri, jabatan di kanan */
+    align-items: center;
+}
+
+.jabatan {
+    background: #2e7d32;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.nama {
+    font-weight: bold;
+    color: #333;
+}
+
+.ppmasjid {
+    text-align: center; /* Biar foto & judul ke tengah */
+    padding: 20px;
+}
+
+.ppmasjid img {
+    width: 120px;          /* Atur lebar foto biar nggak raksasa */
+    height: 120px;         /* Harus sama dengan width biar bulat */
+    border-radius: 50%;    /* Biar fotonya jadi bulat */
+    object-fit: cover;     /* Biar gambar di dalemnya nggak penyet */
+    border: 4px solid #2e7d32; /* Kasih pinggiran hijau biar matching */
+    display: block;        /* Biar bisa diatur posisinya */
+    margin-left: 20px auto;     /* Biar fotonya otomatis ke tengah */
+}
+.kotak-utama {
+    position: relative; /* Wajib: biar tulisan gak kabur ke luar kotak */
+    padding: 20px;
+    background: white;
+}
+
+.tulisan-kanan-atas {
+    position: absolute;
+    top: 10px;    /* Jarak dari atas */
+    right: 10px;  /* Jarak dari kanan */
+    font-size: 12px;
+    color: red;
+}
+
+.ppmasjid {
+    display: flex;         /* Biar isinya (foto & teks) sejajar ke samping */
+    align-items: center;    /* Biar teksnya pas di tengah tinggi foto */
+    padding: 20px;
+    gap: 15px;             /* Kasih jarak antara foto dan tulisan */
+}
+
+.ppmasjid img {
+    width: 80px;           /* Kecilin dikit biar muat di samping teks */
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2e7d32;
+}
+
+.ppmasjid h2 {
+    text-align: left;      /* Tulisan jangan di-center lagi karena udah di samping */
+    margin: 0;             /* Buang margin biar gak berantakan */
+    font-size: 18px;       /* Sesuaikan ukuran biar gak kegedean */
+    color: #2e7d32;
+}
+/* Kita modifikasi ppmasjid biar isinya sejajar */
+.ppmasjid {
+    display: flex;
+    align-items: center; /* Teks pas di tengah tinggi foto */
+    gap: 15px;           /* Jarak antara foto dan teks */
+    justify-content: flex-start !important; /* Biar nempel ke kiri, gak kepisah jauh */
+}
+
+.ppmasjid img {
+    width: 60px;  /* Kecilin dikit biar manis di dalem kotak */
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2e7d32;
+}
+
+.judul-struktur {
+    font-size: 16px;
+    color: #2e7d32;
+    margin-right: 50x;
+    text-align: left;
+}
+
+.ppmasjid {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;       /* Biar ada kotak putihnya */
+    width: 90%;              /* SAMAIN sama lebar kotak bawah */
+    max-width: 450px;        /* Batas lebar maksimal */
+    margin: 20px auto;       /* KUNCI: auto biar dia pas di tengah layar */
+    padding: 15px;           /* Jarak dalem kotak biar gak sesek */
+    border-radius: 15px;     /* Sudut melengkung */
+    border: 1px solid #ddd;  /* Garis pinggir tipis */
+    box-sizing: border-box;  /* BIAR GAK NABRAK: Menghitung padding ke dalem lebar */
+}
+
+.ppmasjid img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2e7d32;
+    flex-shrink: 0;          /* Biar foto gak gepeng kalau teksnya panjang */
+}
+
+.ppmasjid h2 {
+    font-size: 16px;
+    color: #2e7d32;
+    margin: 0;
+    text-align: left;
+    line-height: 1.2;        /* Biar jarak antar baris teks rapi */
+}
+
+/* Kontainer buat nampung tombol di pojok kanan bawah */
+.floating-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+.btn-float {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.btn-whatsapp { background-color: #25d366; }
+.btn-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+
+.btn-float:active { transform: scale(0.9); } /* Efek mendem pas diklik */
+
+.hero-section {
+    height: 100vh; /* Full satu layar HP */
+    background-image: url('masjid.jpg'); /* Pake foto masjid lu tadi */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.6); /* Biar tulisannya kebaca, fotonya agak digelapin dikit */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.hero-section h1 { font-size: 28px; margin: 0; }
+.hero-section p { font-size: 16px; opacity: 0.9; }
+.hero-section h2 { font-size: 24px; color: #2e7d32; background: white; display: inline-block; padding: 5px 15px; border-radius: 5px; margin-top: 10px; }
+
+.btn-mulai {
+    margin-top: 30px;
+    padding: 12px 25px;
+    background: #2e7d32;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    animation: bounce 2s infinite; /* Efek gerak biar orang tau bisa di-klik */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+}
+
+.container-konten {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.kartu-cerita {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 5px solid #2e7d32; /* Garis hijau di atas kotak */
+    text-align: center;
+}
+
+.kartu-cerita h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.container-jadwal {
+    width: 90%;
+    max-width: 450px;
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.judul-section {
+    color: #2e7d32;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.item-jadwal {
+    display: flex;
+    align-items: center;
+    background: white;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 4px solid #2e7d32; /* Kasih garis ijo di kiri */
+}
+
+.waktu {
+    font-weight: bold;
+    color: #2e7d32;
+    font-size: 16px;
+    padding-right: 15px;
+    border-right: 1px solid #eee;
+    margin-right: 15px;
+    min-width: 50px;
+}
+
+.info-kegiatan strong {
+    display: block;
+    font-size: 15px;
+    color: #333;
+}
+
+.info-kegiatan span {
+    font-size: 12px;
+    color: #888;
+}
+
+
+</style>
+<div class="hero-section">
+    <div class="overlay">
+        <h1>Assalamu'alaikum</h1>
+        <p>Selamat Datang di Portal Resmi</p>
+        <h2>Remaja Masjid Al-Anshor</h2>
+        <a href="#struktur" class="btn-mulai">Lihat Organisasi</a>
+    </div>
+</div>
+
+<div class="container-konten">
+    <div class="kartu-cerita">
+        <h3><i class="fas fa-eye"></i> Visi Kami</h3>
+        <p>Menciptakan generasi muda yang berakhlaqul karimah, kreatif, dan mandiri demi kemakmuran Masjid Al-Anshor.</p>
+    </div>
+
+
+<div class="container-jadwal">
+    <h3 class="judul-section"><i class="fas fa-calendar-alt"></i> Jadwal Kegiatan Rutin</h3>
+    
+    <div class="item-jadwal">
+        <div class="waktu">19.30</div>
+        <div class="info-kegiatan">
+            <strong>Perkumpulan</strong>
+            <span>Setiap Malam Sabtu</span>
+        </div>
+    </div>
+
+    <div class="item-jadwal">
+        <div class="waktu">-</div>
+        <div class="info-kegiatan">
+            <strong>Pemasangan Teratak</strong>
+            <span>Setiap Ada Acara/Kemalangan</span>
+        </div>
+    </div>
+
+    <div class="item-jadwal">
+        <div class="waktu">-</div>
+        <div class="info-kegiatan">
+            <strong>Bersih-Bersih Masjid</strong>
+            <span>Ketika Ada Acara di Masjid</span>
+        </div>
+    </div>
+</div>
+
+
+<div id="struktur"></div> 
+
+
+
+<div class="pengurus-box ppmasjid">
+   <img src="masjid.jpg" alt="ppmasjid">
+   <h2 class="judul-struktur">Struktur Organisasi Remaja Masjid Al-Anshor</h2>
+</div>
+
+<div class="pengurus-box">
+    <span class="nama">Sir. Robby</span>
+    <span class="jabatan">Pembina</span>
+</div>
+
+<div class="pengurus-box">
+    <span class="nama">Monang</span>
+    <span class="jabatan">Ketua Umum</span>
+</div>
+
+<div class="pengurus-box">
+    <span class="nama">Leo</span>
+    <span class="jabatan">Sekretaris</span>
+</div>
+
+<div class="pengurus-box">
+    <span class="nama">Angga</span>
+    <span class="jabatan">Bendahara</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Manda</span>
+    <span class="jabatan">Anggota</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Juna</span>
+    <span class="jabatan">Anggota</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Yuda</span>
+    <span class="jabatan">Anggota</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Yudi</span>
+    <span class="jabatan">Anggota</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Tiara</span>
+    <span class="jabatan">Anggota</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Raya</span>
+    <span class="jabatan">Anggota</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Pretty</span>
+    <span class="jabatan">Anggota</span>
+</div>
+<div class="pengurus-box">
+    <span class="nama">Duwi</span>
+    <span class="jabatan">Anggota</span>
+    
+    
+    
+</div>
+<div class="floating-container">
+    <a href="https://instagram.com/rm.alanshor_" class="btn-float btn-instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+    
+    <a href="https://chat.whatsapp.com/BqY04z0fwy66miI19Gmqd6?mode=hqctcla" class="btn-float btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
+
+
+
+
+
